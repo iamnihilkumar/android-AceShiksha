@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#E65100"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="Quiz Battle" />
+
+    <!-- Timer + Score bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/tvBattleQuestion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:textColor="@color/text_secondary"
+                android:text="Question 1 of 10" />
+
+            <TextView
+                android:id="@+id/tvBattleTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#E65100"
+                android:text="⏱ 15" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBattleTimer"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:max="15"
+            android:progress="15"
+            android:progressTint="#E65100" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <TextView
+                    android:id="@+id/tvBattleQuestionText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_primary"
+                    android:lineSpacingMultiplier="1.4"
+                    android:text="Loading..." />
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnBattleA"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#FBE9E7"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:gravity="start|center_vertical"
+                android:paddingHorizontal="16dp"
+                android:text="A. " />
+
+            <Button
+                android:id="@+id/btnBattleB"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#FBE9E7"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:gravity="start|center_vertical"
+                android:paddingHorizontal="16dp"
+                android:text="B. " />
+
+            <Button
+                android:id="@+id/btnBattleC"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#FBE9E7"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:gravity="start|center_vertical"
+                android:paddingHorizontal="16dp"
+                android:text="C. " />
+
+            <Button
+                android:id="@+id/btnBattleD"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:backgroundTint="#FBE9E7"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:gravity="start|center_vertical"
+                android:paddingHorizontal="16dp"
+                android:text="D. " />
+
+            <TextView
+                android:id="@+id/tvBattleFeedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:text="" />
+
+            <Button
+                android:id="@+id/btnBattleNext"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#E65100"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:text="Next →"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBarBattle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/layoutBattleNoQuestions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/text_secondary"
+            android:gravity="center"
+            android:text="No questions available yet.\nAsk your teacher to add Quiz Battle questions!" />
+
+    </LinearLayout>
+
+</LinearLayout>

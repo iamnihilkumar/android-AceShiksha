@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#1565C0"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="Car Race" />
+
+    <!-- Race Track -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/tvCarQuestion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:textColor="@color/text_secondary"
+                android:text="Question 1 of 10" />
+
+            <TextView
+                android:id="@+id/tvCarScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#1565C0"
+                android:textStyle="bold"
+                android:text="Speed: 0%" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#E3F2FD"
+            android:layout_marginBottom="4dp">
+
+            <ProgressBar
+                android:id="@+id/progressCarRace"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:max="10"
+                android:progress="0"
+                android:progressTint="#1565C0" />
+
+            <TextView
+                android:id="@+id/tvCarEmoji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="🏎️"
+                android:textSize="24sp"
+                android:translationX="0dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:text="🏁"
+                android:textSize="24sp"
+                android:paddingEnd="4dp" />
+
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:textColor="@color/text_secondary"
+            android:text="🏎️ Correct answers boost your speed. Reach the finish line!" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <TextView
+                    android:id="@+id/tvCarQuestionText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_primary"
+                    android:lineSpacingMultiplier="1.4"
+                    android:text="Loading..." />
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnCarA"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#E3F2FD"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:gravity="start|center_vertical"
+                android:paddingHorizontal="16dp"
+                android:text="A. " />
+
+            <Button
+                android:id="@+id/btnCarB"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#E3F2FD"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:gravity="start|center_vertical"
+                android:paddingHorizontal="16dp"
+                android:text="B. " />
+
+            <Button
+                android:id="@+id/btnCarC"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#E3F2FD"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:gravity="start|center_vertical"
+                android:paddingHorizontal="16dp"
+                android:text="C. " />
+
+            <Button
+                android:id="@+id/btnCarD"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:backgroundTint="#E3F2FD"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:gravity="start|center_vertical"
+                android:paddingHorizontal="16dp"
+                android:text="D. " />
+
+            <TextView
+                android:id="@+id/tvCarFeedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:text="" />
+
+            <Button
+                android:id="@+id/btnCarNext"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#1565C0"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:text="Next Question →"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBarCar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/layoutCarNoQuestions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/text_secondary"
+            android:gravity="center"
+            android:text="No questions available yet.\nAsk your teacher to add Car Race questions!" />
+
+    </LinearLayout>
+
+</LinearLayout>

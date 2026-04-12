@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EduReach1</string>
+    <string name="welcome">Welcome to EduReach</string>
+    <string name="tagline">Learn. Play. Grow.</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="full_name">Full Name</string>
+    <string name="student">Student</string>
+    <string name="teacher">Teacher</string>
+    <string name="select_class">Select Class</string>
+    <string name="already_have_account">Already have an account? Login</string>
+    <string name="no_account">Don\'t have an account? Register</string>
+    <string name="privacy_policy_text">Privacy Policy — EduReach1\n\nLast updated: April 2025\n\n1. Data We Collect\nWe collect your name, email address, class level, and role (teacher or student) to provide the app experience.\n\n2. How We Use Your Data\nYour data is used solely to operate EduReach1. We do not sell or share your data with third parties.\n\n3. Firebase\nWe use Google Firebase for authentication and data storage. Firebase\'s privacy policy applies.\n\n4. Children\'s Privacy\nEduReach1 is designed for students aged 11–17 under teacher supervision. No data is collected from children without school authorization.\n\n5. Contact\nFor questions, contact us at: support@edureach1.app</string>
+</resources>
+
+
+
+

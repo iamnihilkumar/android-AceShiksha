@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:padding="24dp"
+android:background="@color/white">
+
+<!-- Progress -->
+<TextView
+    android:id="@+id/tvProgress"
+    android:text="Question 1 of 10"
+    android:textSize="13sp"
+    android:textColor="@color/gray"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"/>
+
+<ProgressBar
+    android:id="@+id/pbQuiz"
+    style="?android:attr/progressBarStyleHorizontal"
+    android:layout_width="match_parent"
+    android:layout_height="8dp"
+    android:max="100"
+    android:progress="10"
+    android:layout_marginBottom="32dp"/>
+
+<!-- Question -->
+<TextView
+    android:id="@+id/tvQuestion"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    android:lineSpacingMultiplier="1.4"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="32dp"/>
+
+<!-- Options -->
+<Button
+    android:id="@+id/btnOptionA"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+<Button
+    android:id="@+id/btnOptionB"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+<Button
+    android:id="@+id/btnOptionC"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+<Button
+    android:id="@+id/btnOptionD"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="24dp"
+    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+<ProgressBar
+    android:id="@+id/progressBar"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:visibility="gone"/>
+
+</LinearLayout>

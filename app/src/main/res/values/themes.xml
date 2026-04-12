@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.EduReach1" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/green_primary</item>
+        <item name="colorPrimaryVariant">@color/green_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/green_light</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:statusBarColor">@color/green_dark</item>
+    </style>
+
+    <style name="Theme.EduReach1.Splash" parent="Theme.EduReach1">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:statusBarColor">@color/green_primary</item>
+    </style>
+</resources>
+
+
+    <!--<resources xmlns:tools="http://schemas.android.com/tools">-->
+    <!--    &lt;!&ndash; Base application theme. &ndash;&gt;-->
+    <!--    <style name="Base.Theme.EduReach1" parent="Theme.Material3.DayNight.NoActionBar">-->
+    <!--        &lt;!&ndash; Customize your light theme here. &ndash;&gt;-->
+    <!--        &lt;!&ndash; <item name="colorPrimary">@color/my_light_primary</item> &ndash;&gt;-->
+    <!--    </style>-->
+
+    <!--    <style name="Theme.EduReach1" parent="Base.Theme.EduReach1" />-->
+    <!--</resources>-->

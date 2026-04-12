@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#1565C0"
+        android:title="PDF → AI Quiz"
+        android:titleTextColor="#FFFFFF" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Step 1: Select PDF -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Step 1: Select PDF"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#1565C0"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/btnPickPdf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="📄 Choose PDF File"
+                android:backgroundTint="#1565C0"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/tvPdfName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No PDF selected"
+                android:textSize="13sp"
+                android:textColor="#777777"
+                android:layout_marginTop="6dp" />
+
+            <!-- Extracted text preview -->
+            <TextView
+                android:id="@+id/tvPdfText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No PDF selected"
+                android:textSize="12sp"
+                android:textColor="#999999"
+                android:maxLines="4"
+                android:ellipsize="end"
+                android:background="#EEEEEE"
+                android:padding="8dp"
+                android:layout_marginTop="6dp"
+                android:visibility="visible" />
+
+            <!-- Step 2: Configure -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Step 2: Configure"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#1565C0"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Class Level"
+                android:textSize="13sp"
+                android:textColor="#444444" />
+
+            <Spinner
+                android:id="@+id/spinnerClass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_white"
+                android:padding="8dp"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Subject"
+                android:textSize="13sp"
+                android:textColor="#444444" />
+
+            <Spinner
+                android:id="@+id/spinnerSubject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_white"
+                android:padding="8dp"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Game Type"
+                android:textSize="13sp"
+                android:textColor="#444444" />
+
+            <Spinner
+                android:id="@+id/spinnerGameType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_white"
+                android:padding="8dp"
+                android:layout_marginBottom="10dp" />
+
+            <!-- Step 3: Generate -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Step 3: Generate Questions"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#1565C0"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/btnGenerate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="✨ Generate with AI"
+                android:enabled="false"
+                android:backgroundTint="#F57F17"
+                android:textColor="#FFFFFF" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="13sp"
+                android:textColor="#555555"
+                android:layout_marginTop="6dp" />
+
+            <!-- Step 4: Review & Save -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Step 4: Review &amp; Save"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#1565C0"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGeneratedQuestions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+
+            <Button
+                android:id="@+id/btnSaveAll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="💾 Save All Questions"
+                android:visibility="gone"
+                android:backgroundTint="#2E7D32"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

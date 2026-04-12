@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.edureach1.fragments.HomeFragment"
+        android:label="Home" />
+
+    <fragment
+        android:id="@+id/gameMenuFragment"
+        android:name="com.example.edureach1.fragments.GameMenuFragment"
+        android:label="Games"
+        tools:layout="@layout/fragment_game_menu" />
+
+    <fragment
+        android:id="@+id/subjectsFragment"
+        android:name="com.example.edureach1.fragments.SubjectsFragment"
+        android:label="Subjects" />
+
+    <fragment
+        android:id="@+id/studentQuizListFragment"
+        android:name="com.example.edureach1.fragments.StudentQuizListFragment"
+        android:label="Quizzes" />
+
+    <fragment
+        android:id="@+id/leaderboardFragment"
+        android:name="com.example.edureach1.fragments.LeaderboardFragment"
+        android:label="Leaderboard" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.edureach1.fragments.ProfileFragment"
+        android:label="Profile" />
+
+
+
+</navigation>

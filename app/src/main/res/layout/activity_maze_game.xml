@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F1F8E9">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/green_dark"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="Maze Runner" />
+
+    <!-- Stats bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvMazeSteps"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textColor="@color/text_secondary"
+            android:text="Steps: 0" />
+
+        <TextView
+            android:id="@+id/tvMazeScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#1B5E20"
+            android:textStyle="bold"
+            android:text="✅ 0  ❌ 0" />
+
+    </LinearLayout>
+
+    <!-- Maze grid -->
+    <com.example.edureach1.utils.MazeView
+        android:id="@+id/mazeView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="12dp" />
+
+    <!-- Loading / No questions overlays -->
+    <ProgressBar
+        android:id="@+id/progressBarMaze"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvNoQuestions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:textColor="@color/text_secondary"
+        android:text="No questions available yet.\nAsk your teacher to add Maze questions!"
+        android:visibility="gone" />
+
+    <!-- Direction controls -->
+    <LinearLayout
+        android:id="@+id/layoutControls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingBottom="20dp"
+        android:paddingTop="8dp"
+        android:background="@color/white">
+
+        <!-- Up -->
+        <Button
+            android:id="@+id/btnUp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:backgroundTint="@color/green_dark"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:text="↑" />
+
+        <!-- Left / Down / Right -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="4dp">
+
+            <Button
+                android:id="@+id/btnLeft"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:backgroundTint="@color/green_dark"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:text="←"
+                android:layout_marginEnd="4dp" />
+
+            <Button
+                android:id="@+id/btnDown"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:backgroundTint="@color/green_dark"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:text="↓"
+                android:layout_marginEnd="4dp" />
+
+            <Button
+                android:id="@+id/btnRight"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:backgroundTint="@color/green_dark"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:text="→" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
