@@ -1,35 +1,3 @@
-//package com.example.edureach1.utils
-//
-//object Constants {
-//    const val COLLECTION_USERS = "users"
-//    const val ROLE_STUDENT = "student"
-//    const val ROLE_TEACHER = "teacher"
-//    const val PREF_NAME = "EduReachPrefs"
-//    const val PREF_USER_ROLE = "user_role"
-//
-//    // Replace with your actual Gemini API key
-//    const val GEMINI_API_KEY = "AIzaSyAnev2bYVVYMP_O6aIk4kJEU4RKBZSw4_Q"
-//
-//    // XP rewards
-//    const val XP_LESSON_COMPLETE = 20
-//    const val XP_CORRECT_ANSWER = 10
-//
-//    // Add these to your existing Constants.kt
-//    const val COLLECTION_GAME_QUESTIONS = "game_questions"
-//
-//    const val GAME_TYPE_MAZE = "maze"
-//    const val GAME_TYPE_CAR_RACE = "car_race"
-//    const val GAME_TYPE_QUIZ_BATTLE = "quiz_battle"
-//
-//
-//    const val XP_GAME_COMPLETE = 30
-//    const val XP_GAME_CORRECT = 10
-//
-//    const val GAME_TOTAL_QUESTIONS = 10
-//
-//    const val GAME_TYPE_TIMELINE   = "timeline"
-//}
-
 package com.example.edureach1.utils
 
 object Constants {
@@ -39,7 +7,8 @@ object Constants {
     const val PREF_NAME = "EduReachPrefs"
     const val PREF_USER_ROLE = "user_role"
 
-    const val GEMINI_API_KEY = "AIzaSyAnev2bYVVYMP_O6aIk4kJEU4RKBZSw4_Q"
+
+    val GEMINI_API_KEY: String get() = com.example.edureach1.BuildConfig.GEMINI_API_KEY
 
     // XP rewards
     const val XP_LESSON_COMPLETE = 20

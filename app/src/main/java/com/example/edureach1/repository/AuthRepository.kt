@@ -182,13 +182,20 @@ class AuthRepository {
                 ?: return Result.failure(Exception("User not found"))
 
             // ── Role mismatch check ──────────────────────────────────────────
-            if (user.role != selectedRole) {
-                auth.signOut()   // don't leave them signed in
+
+            if (selectedRole.isNotEmpty() && user.role != selectedRole) {
+                auth.signOut()
                 val msg = if (user.role == "teacher")
                     "You are registered as a teacher. Please use the Teacher Login page."
                 else
                     "You are registered as a student. Please use the Student Login page."
                 return Result.failure(Exception(msg))
+            }
+
+            // In login(), after role mismatch check, ADD THIS:
+            if (result.user?.isEmailVerified == false) {
+                auth.signOut()
+                return Result.failure(Exception("EMAIL_NOT_VERIFIED"))
             }
             // ────────────────────────────────────────────────────────────────
 
@@ -219,6 +226,7 @@ class AuthRepository {
                 level = 1
             )
             db.collection(Constants.COLLECTION_USERS).document(uid).set(user).await()
+            result.user?.sendEmailVerification()?.await()
             Result.success(user)
         } catch (e: Exception) {
             Result.failure(e)
@@ -272,5 +280,17 @@ class AuthRepository {
             .addOnFailureListener {
                 onResult(null)
             }
+    }
+
+    suspend fun resendVerificationEmail(): Result<Unit> {
+        return try {
+            val user = auth.currentUser
+                ?: return Result.failure(Exception("No user signed in"))
+            user.sendEmailVerification().await()
+            auth.signOut() // sign out after resending — they still need to verify
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 }

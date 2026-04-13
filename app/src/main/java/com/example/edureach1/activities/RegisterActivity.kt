@@ -91,11 +91,13 @@ class RegisterActivity : AppCompatActivity() {
         viewModel.authState.observe(this) { state ->
             when (state) {
                 is AuthState.Loading -> loadingDialog.show()
+
                 is AuthState.Success -> {
                     loadingDialog.dismiss()
-                    startActivity(Intent(this, MainActivity::class.java).apply {
-                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    })
+                    binding.tvError.text = "✓ Account created! Check your email to verify before logging in."
+                    binding.tvError.setTextColor(getColor(R.color.green_primary))
+                    binding.tvError.visibility = View.VISIBLE
+                    binding.btnRegister.isEnabled = false
                 }
                 is AuthState.Error -> {
                     loadingDialog.dismiss()

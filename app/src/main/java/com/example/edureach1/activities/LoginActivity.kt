@@ -280,19 +280,11 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.etEmail.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
 
-            if (email.isEmpty()) {
-                showError("Please enter your email")
-                return@setOnClickListener
-            }
-            if (password.isEmpty()) {
-                showError("Please enter your password")
-                return@setOnClickListener
-            }
+            if (email.isEmpty()) { showError("Please enter your email"); return@setOnClickListener }
+            if (password.isEmpty()) { showError("Please enter your password"); return@setOnClickListener }
 
-            // ── Read which portal the user selected ──────────────────────────
             val selectedRole = if (binding.rgRole.checkedRadioButtonId == R.id.rbTeacher)
                 "teacher" else "student"
-            // ─────────────────────────────────────────────────────────────────
 
             hideError()
             viewModel.login(email, password, selectedRole)
@@ -300,6 +292,18 @@ class LoginActivity : AppCompatActivity() {
 
         binding.tvRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
+        }
+
+        binding.tvResendVerification.setOnClickListener {
+            val email = binding.etEmail.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
+            if (email.isEmpty() || password.isEmpty()) {
+                showError("Enter your email and password to resend verification")
+                return@setOnClickListener
+            }
+            hideError()
+            binding.tvResendVerification.visibility = View.GONE
+            viewModel.resendVerificationEmail(email, password)
         }
     }
 
@@ -310,6 +314,28 @@ class LoginActivity : AppCompatActivity() {
                 is AuthState.Success -> {
                     loadingDialog.dismiss()
                     navigateBasedOnRole()
+                }
+                is AuthState.Error -> {
+                    loadingDialog.dismiss()
+                    if (state.message == "EMAIL_NOT_VERIFIED") {
+                        showError("Please verify your email before logging in.")
+                        binding.tvResendVerification.visibility = View.VISIBLE
+                    } else {
+                        showError(state.message)
+                        binding.tvResendVerification.visibility = View.GONE
+                    }
+                }
+            }
+        }
+
+        viewModel.resendState.observe(this) { state ->
+            when (state) {
+                is AuthState.Loading -> loadingDialog.show()
+                is AuthState.Success -> {
+                    loadingDialog.dismiss()
+                    showError("✓ Verification email sent! Check your inbox.")
+                    binding.tvError.setTextColor(getColor(R.color.green_primary))
+                    binding.tvResendVerification.visibility = View.GONE
                 }
                 is AuthState.Error -> {
                     loadingDialog.dismiss()

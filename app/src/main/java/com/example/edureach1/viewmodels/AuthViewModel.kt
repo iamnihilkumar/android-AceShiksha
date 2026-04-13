@@ -21,6 +21,9 @@ class AuthViewModel : ViewModel() {
     private val _authState = MutableLiveData<AuthState>()
     val authState: LiveData<AuthState> = _authState
 
+    private val _resendState = MutableLiveData<AuthState>()
+    val resendState: LiveData<AuthState> = _resendState
+
     fun login(email: String, password: String, selectedRole: String) {
         _authState.value = AuthState.Loading
         viewModelScope.launch {
@@ -41,6 +44,30 @@ class AuthViewModel : ViewModel() {
                 AuthState.Success(result.getOrThrow())
             } else {
                 AuthState.Error(result.exceptionOrNull()?.message ?: "Registration failed")
+            }
+        }
+    }
+
+    fun resendVerificationEmail(email: String, password: String) {
+        _resendState.value = AuthState.Loading
+        viewModelScope.launch {
+            val signInResult = repository.login(email, password, "")
+
+            if (signInResult.isFailure) {
+                val msg = signInResult.exceptionOrNull()?.message ?: ""
+
+                if (msg != "EMAIL_NOT_VERIFIED") {
+                    _resendState.value = AuthState.Error("Could not resend. Check your email/password.")
+                    return@launch
+                }
+            }
+
+            val result = repository.resendVerificationEmail()
+
+            _resendState.value = if (result.isSuccess) {
+                AuthState.Success(User())
+            } else {
+                AuthState.Error(result.exceptionOrNull()?.message ?: "Failed to resend")
             }
         }
     }
