@@ -57,7 +57,6 @@ Leaderboard
 
 * 🧩 Maze Game
 * 🚗 Car Race
-* 📜 History Timeline
 * ⚡ Rapid Fire
 * ⚔️ Quiz Battle
 
@@ -175,14 +174,6 @@ GEMINI_API_KEY=your_api_key_here
 
 ---
 
-## 🗺️ Roadmap
-
-*  Phase 1–4: Core + AI
-*  Phase 5–9: Quiz + Games + AI PDF
-*  Phase 10: Reports & polish
-*  Phase 11: Play Store release
-
----
 
 ## 📄 License
 
