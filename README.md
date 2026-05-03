@@ -1,4 +1,4 @@
-# EduReach 📚🚀
+# AceShiksha 📚🚀
 
 **AI-Powered Learning Platform for Indian Schools (Classes 6–11)**
 Bridging the education gap with intelligent tutoring, gamified learning, and teacher tools — built for Bharat 🇮🇳
@@ -6,8 +6,7 @@ Bridging the education gap with intelligent tutoring, gamified learning, and tea
 ---
 
 ## 🌟 Overview
-
-EduReach1 is a free Android application designed to make quality education accessible to students and teachers, especially in regions with limited access to tutoring.
+AceShiksha is a free Android application designed to make quality education accessible to students and teachers, especially in regions with limited access to tutoring.
 
 It combines:
 
@@ -136,8 +135,8 @@ Firebase / Gemini API
 ### 1. Clone Repo
 
 ```
-git clone https://github.com/iamnihilkumar/android-Edureach.git
-cd EduReach1
+git clone https://github.com/iamnihilkumar/android-AceShiksha.git
+cd AceShiksha
 ```
 
 ---
