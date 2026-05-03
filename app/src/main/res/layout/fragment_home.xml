@@ -59,7 +59,7 @@
                     android:id="@+id/ivAvatar"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:src="@drawable/ic_logo"
                     app:civ_border_width="2dp"
                     app:civ_border_color="@color/white"/>
 

@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -5,22 +7,27 @@ plugins {
 }
 
 android {
-    namespace = "com.example.edureach1"
+    namespace = "com.nikhil.aceshiksha"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.edureach1"
+        applicationId = "com.nikhil.aceshiksha"
         minSdk = 24
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 3
+        versionName = "1.2"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
 
-        val localProps = com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir, providers)
+
+
+        val localPropsFile = rootProject.file("local.properties")
+        val localProps = Properties()
+        if (localPropsFile.exists()) {
+            localProps.load(localPropsFile.inputStream())
+        }
         val geminiKey = localProps.getProperty("GEMINI_API_KEY", "")
         buildConfigField("String", "GEMINI_API_KEY", "\"$geminiKey\"")
-
     }
 
     buildFeatures {
@@ -112,7 +119,7 @@ dependencies {
 //}
 //
 //android {
-//    namespace = "com.example.edureach1"
+//    namespace = "com.nikhil.aceshiksha"
 //    compileSdk {
 //        version = release(36) {
 //            minorApiLevel = 1
@@ -120,7 +127,7 @@ dependencies {
 //    }
 //
 //    defaultConfig {
-//        applicationId = "com.example.edureach1"
+//        applicationId = "com.nikhil.aceshiksha"
 //        minSdk = 24
 //        targetSdk = 36
 //        versionCode = 1

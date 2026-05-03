@@ -13,7 +13,10 @@
         android:layout_height="?attr/actionBarSize"
         android:background="#1565C0"
         android:title="PDF → AI Quiz"
-        android:titleTextColor="#FFFFFF" />
+        android:titleTextColor="#FFFFFF"
+        app:navigationIcon="@drawable/ic_back"
+        app:navigationContentDescription="Back"
+        xmlns:app="http://schemas.android.com/apk/res-auto" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

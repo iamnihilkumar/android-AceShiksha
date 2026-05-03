@@ -12,11 +12,11 @@
     android:label="@string/app_name"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
-    android:theme="@style/Theme.EduReach1">
+    android:theme="@style/Theme.AceShiksha">
 
     <activity
         android:name=".activities.SplashActivity"
-        android:theme="@style/Theme.EduReach1.Splash"
+        android:theme="@style/Theme.AceShiksha.Splash"
         android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />

@@ -45,7 +45,7 @@
     </LinearLayout>
 
     <!-- Maze grid -->
-    <com.example.edureach1.utils.MazeView
+    <com.nikhil.aceshiksha.utils.MazeView
         android:id="@+id/mazeView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
