@@ -1,6 +1,7 @@
 package com.nikhil.aceshiksha.activities
 
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +11,9 @@ import com.nikhil.aceshiksha.models.GameQuestion
 import com.nikhil.aceshiksha.repository.GameRepository
 import com.nikhil.aceshiksha.utils.Constants.GAME_TYPE_CAR_RACE
 import com.nikhil.aceshiksha.utils.Constants.GAME_TYPE_MAZE
+import com.nikhil.aceshiksha.utils.Constants.GAME_TYPE_MEMORY_MATCH
 import com.nikhil.aceshiksha.utils.Constants.GAME_TYPE_QUIZ_BATTLE
+import com.nikhil.aceshiksha.utils.Constants.GAME_TYPE_TRUE_OR_FALSE
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
@@ -19,8 +22,6 @@ class CreateGameQuestionActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreateGameQuestionBinding
     private val repository = GameRepository()
-
-    // Tracks how many questions have been saved in this session
     private var questionCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,19 +37,25 @@ class CreateGameQuestionActivity : AppCompatActivity() {
         setupSpinners()
         updateCounter()
 
-        // Save current question, clear only question fields, stay on screen
-        binding.btnAddNextQuestion.setOnClickListener {
-            saveQuestion(finishAfter = false)
-        }
+        // Show/hide hint when game type changes
+        binding.spinnerGameType.onItemSelectedListener =
+            object : android.widget.AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: android.widget.AdapterView<*>, view: View?,
+                    position: Int, id: Long
+                ) {
+                    updateHintForGameType(parent.getItemAtPosition(position).toString())
+                }
+                override fun onNothingSelected(parent: android.widget.AdapterView<*>) {}
+            }
 
-        // Save current question and close the screen
-        binding.btnDone.setOnClickListener {
-            saveQuestion(finishAfter = true)
-        }
+        binding.btnAddNextQuestion.setOnClickListener { saveQuestion(finishAfter = false) }
+        binding.btnDone.setOnClickListener { saveQuestion(finishAfter = true) }
     }
 
     private fun setupSpinners() {
-        val gameTypes = listOf("Maze", "Car Race", "Quiz Battle")
+        // ✅ Updated: 5 game types
+        val gameTypes = listOf("Maze", "Car Race", "Quiz Battle", "Memory Match", "True or False")
         binding.spinnerGameType.adapter = ArrayAdapter(
             this, android.R.layout.simple_spinner_dropdown_item, gameTypes
         )
@@ -64,24 +71,50 @@ class CreateGameQuestionActivity : AppCompatActivity() {
         )
     }
 
+    /**
+     * Shows a context-aware hint card below the Game Type spinner
+     * for Memory Match and True or False, hidden for other types.
+     */
+    private fun updateHintForGameType(gameTypeLabel: String) {
+        when (gameTypeLabel) {
+            "Memory Match" -> {
+                binding.tvGameTypeHint.visibility = View.VISIBLE
+                binding.tvGameTypeHint.text =
+                    "📌 Memory Match format:\n" +
+                            "• Question = the TERM  (e.g. \"Photosynthesis\")\n" +
+                            "• Option A = the DEFINITION  (e.g. \"Process plants use to make food\")\n" +
+                            "• Options B, C, D and Correct Answer are ignored."
+            }
+            "True or False" -> {
+                binding.tvGameTypeHint.visibility = View.VISIBLE
+                binding.tvGameTypeHint.text =
+                    "📌 True or False format:\n" +
+                            "• Question = the STATEMENT students must judge\n" +
+                            "• Correct Answer = A  if the statement is TRUE\n" +
+                            "• Correct Answer = B  if the statement is FALSE\n" +
+                            "• Options A, B, C, D text fields are ignored."
+            }
+            else -> {
+                binding.tvGameTypeHint.visibility = View.GONE
+            }
+        }
+    }
+
     private fun updateCounter() {
         binding.tvQuestionCount.text = questionCount.toString()
     }
 
-    /**
-     * Validates and saves the current question to Firestore.
-     * @param finishAfter if true, closes the activity after saving; otherwise clears
-     *                    only the question/options fields so the teacher can add another
-     *                    question with the same Game Type / Class / Subject.
-     */
     private fun saveQuestion(finishAfter: Boolean) {
         val gameTypeLabel = binding.spinnerGameType.selectedItem.toString()
         val gameType = when (gameTypeLabel) {
-            "Maze"       -> GAME_TYPE_MAZE
-            "Car Race"   -> GAME_TYPE_CAR_RACE
-            "Quiz Battle"-> GAME_TYPE_QUIZ_BATTLE
-            else         -> GAME_TYPE_MAZE
+            "Maze"          -> GAME_TYPE_MAZE
+            "Car Race"      -> GAME_TYPE_CAR_RACE
+            "Quiz Battle"   -> GAME_TYPE_QUIZ_BATTLE
+            "Memory Match"  -> GAME_TYPE_MEMORY_MATCH
+            "True or False" -> GAME_TYPE_TRUE_OR_FALSE
+            else            -> GAME_TYPE_MAZE
         }
+
         val classLevel    = binding.spinnerClassLevel.selectedItem.toString()
         val subject       = binding.etSubject.text.toString().trim()
         val question      = binding.etQuestion.text.toString().trim()
@@ -91,10 +124,24 @@ class CreateGameQuestionActivity : AppCompatActivity() {
         val optionD       = binding.etOptionD.text.toString().trim()
         val correctAnswer = binding.spinnerCorrectAnswer.selectedItem.toString()
 
-        if (subject.isEmpty() || question.isEmpty() || optionA.isEmpty()
-            || optionB.isEmpty() || optionC.isEmpty() || optionD.isEmpty()
-        ) {
-            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+        // For Memory Match: only question + optionA required
+        // For True or False: only question + correctAnswer required
+        // For all others: all fields required
+        val isValid = when (gameType) {
+            GAME_TYPE_MEMORY_MATCH  -> subject.isNotEmpty() && question.isNotEmpty() && optionA.isNotEmpty()
+            GAME_TYPE_TRUE_OR_FALSE -> subject.isNotEmpty() && question.isNotEmpty()
+            else -> subject.isNotEmpty() && question.isNotEmpty()
+                    && optionA.isNotEmpty() && optionB.isNotEmpty()
+                    && optionC.isNotEmpty() && optionD.isNotEmpty()
+        }
+
+        if (!isValid) {
+            val msg = when (gameType) {
+                GAME_TYPE_MEMORY_MATCH  -> "Please fill Subject, Question (Term) and Option A (Definition)"
+                GAME_TYPE_TRUE_OR_FALSE -> "Please fill Subject and Question (Statement)"
+                else -> "Please fill in all fields"
+            }
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -121,7 +168,6 @@ class CreateGameQuestionActivity : AppCompatActivity() {
             if (success) {
                 questionCount++
                 updateCounter()
-
                 if (finishAfter) {
                     Toast.makeText(
                         this@CreateGameQuestionActivity,
@@ -139,17 +185,12 @@ class CreateGameQuestionActivity : AppCompatActivity() {
                     setButtonsEnabled(true)
                 }
             } else {
-                Toast.makeText(
-                    this@CreateGameQuestionActivity,
-                    "Failed to save. Try again.",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this@CreateGameQuestionActivity, "Failed to save. Try again.", Toast.LENGTH_SHORT).show()
                 setButtonsEnabled(true)
             }
         }
     }
 
-    /** Clears only the question/options fields; Game Type, Class and Subject stay intact. */
     private fun clearQuestionFields() {
         binding.etQuestion.setText("")
         binding.etOptionA.setText("")
@@ -162,6 +203,6 @@ class CreateGameQuestionActivity : AppCompatActivity() {
 
     private fun setButtonsEnabled(enabled: Boolean) {
         binding.btnAddNextQuestion.isEnabled = enabled
-        binding.btnDone.isEnabled            = enabled
+        binding.btnDone.isEnabled = enabled
     }
 }
