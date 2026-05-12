@@ -31,6 +31,9 @@ class GameViewModel : ViewModel() {
     private val _answerResult = MutableLiveData<Boolean?>()
     val answerResult: LiveData<Boolean?> = _answerResult
 
+    private val _questionsLoaded = MutableLiveData<List<GameQuestion>>()
+    val questionsLoaded: LiveData<List<GameQuestion>> = _questionsLoaded
+
     private var questionList = listOf<GameQuestion>()
     private var allQuestions = listOf<GameQuestion>()
 

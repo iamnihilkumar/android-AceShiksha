@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        app:title="Memory Match"
+        app:titleTextColor="@android:color/white" />
+
+    <!-- Loading -->
+    <ProgressBar
+        android:id="@+id/progressBarMemory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:visibility="gone" />
+
+    <!-- No Questions -->
+    <LinearLayout
+        android:id="@+id/layoutMemoryNoQuestions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🃏"
+            android:textSize="48sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No questions available"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ask your teacher to add Memory Match questions for your class."
+            android:textSize="14sp"
+            android:textColor="@color/text_secondary"
+            android:gravity="center"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+
+    <!-- Game UI -->
+    <LinearLayout
+        android:id="@+id/layoutMemoryGame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <!-- Stats row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvMemoryMoves"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Moves: 0"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary" />
+
+            <TextView
+                android:id="@+id/tvMemoryPairs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pairs: 0 / 0"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary"
+                android:gravity="end" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tap two cards to match a term with its definition"
+            android:textSize="13sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Card grid built dynamically -->
+        <LinearLayout
+            android:id="@+id/gridMemory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+
+</LinearLayout>

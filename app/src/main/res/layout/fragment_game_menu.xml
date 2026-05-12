@@ -232,6 +232,140 @@
 
         </androidx.cardview.widget.CardView>
 
+        <!-- Memory Match -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardMemoryMatch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    android:gravity="center"
+                    android:textSize="28sp"
+                    android:text="🃏"
+                    android:background="@drawable/bg_game_icon_purple" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Memory Match"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Flip cards to match terms with definitions"
+                        android:textSize="13sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginTop="2dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+10 XP per correct answer"
+                        android:textSize="12sp"
+                        android:textColor="#1B5E20"
+                        android:layout_marginTop="4dp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_secondary"
+                    android:text="›" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- True or False -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardTrueOrFalse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    android:gravity="center"
+                    android:textSize="28sp"
+                    android:text="✅"
+                    android:background="@drawable/bg_game_icon_orange" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="True or False"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="8 seconds to decide — build your streak!"
+                        android:textSize="13sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginTop="2dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+10 XP per correct answer"
+                        android:textSize="12sp"
+                        android:textColor="#1B5E20"
+                        android:layout_marginTop="4dp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_secondary"
+                    android:text="›" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
     </LinearLayout>
 
 </ScrollView>

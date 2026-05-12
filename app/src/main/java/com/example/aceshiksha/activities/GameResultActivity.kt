@@ -39,6 +39,8 @@ class GameResultActivity : AppCompatActivity() {
                 "maze" -> MazeGameActivity::class.java
                 "car_race" -> CarRaceActivity::class.java
                 "quiz_battle" -> QuizBattleActivity::class.java
+                "memory_match"  -> MemoryMatchActivity::class.java   // ✅ ADD
+                "true_or_false" -> TrueOrFalseActivity::class.java   // ✅ ADD
                 else -> null
             }
             activityClass?.let {

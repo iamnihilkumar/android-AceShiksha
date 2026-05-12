@@ -95,6 +95,12 @@
     <activity android:name=".activities.CreateTopicActivity"
         android:exported="false"
         android:windowSoftInputMode="adjustResize"/>
+
+    <activity android:name=".activities.MemoryMatchActivity"
+        android:exported="false"/>/>
+
+    <activity android:name=".activities.TrueOrFalseActivity"
+        android:exported="false"/>
 </application>
 
 </manifest>
