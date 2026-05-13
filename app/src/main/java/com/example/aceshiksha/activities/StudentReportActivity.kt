@@ -44,7 +44,6 @@ class StudentReportActivity : AppCompatActivity() {
         loadReport(viewMode, targetUid)
     }
 
-    // ── Only this method changed ──────────────────────────────────────────
     private fun loadReport(viewMode: String, targetUid: String?) {
         if (viewMode == "teacher" && targetUid != null) {
             // Teacher path: fetch the target student's Firestore doc directly
@@ -52,7 +51,6 @@ class StudentReportActivity : AppCompatActivity() {
                 if (user != null) {
                     viewModel.loadReport(user.uid, user.classLevel)
                 }else {
-                    // handle error
                     Toast.makeText(this, "Failed to load student data", Toast.LENGTH_SHORT).show()
                     finish()
                 }

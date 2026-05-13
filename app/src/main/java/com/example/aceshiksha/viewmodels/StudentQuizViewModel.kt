@@ -98,7 +98,6 @@ class StudentQuizViewModel : ViewModel() {
                         .await()
                 }
 
-                // ✅ Update streak
                 updateStreak(uid)
 
                 _state.value = QuizAttemptState.AttemptFinished(score, total)
@@ -110,7 +109,7 @@ class StudentQuizViewModel : ViewModel() {
 
     /**
      * Streak logic:
-     * - We store a `lastActivityDate` (epoch ms, start-of-day) in the user document.
+     * - store a `lastActivityDate` (epoch ms, start-of-day) in the user document.
      * - If the student completes a quiz today and hasn't already been counted today → streak + 1
      * - If they missed yesterday (gap > 1 day) → streak resets to 1
      * - If they already completed a quiz today → streak unchanged (no double-count)

@@ -42,8 +42,6 @@ class QuizBattleActivity : AppCompatActivity() {
         viewModel.loadQuestions(classLevel, GAME_TYPE_QUIZ_BATTLE, studentUid)  // ← PASS studentUid
     }
 
-    // ── Everything below is UNCHANGED ────────────────────────────────
-
     private fun observeGame() {
         viewModel.gameState.observe(this) { state ->
             when (state) {

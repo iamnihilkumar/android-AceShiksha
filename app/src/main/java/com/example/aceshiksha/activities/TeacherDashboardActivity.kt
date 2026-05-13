@@ -59,7 +59,6 @@ class TeacherDashboardActivity : AppCompatActivity() {
         binding.cardPdfQuiz.setOnClickListener {
             startActivity(Intent(this, PdfQuizActivity::class.java))
         }
-        // NEW
         binding.cardManageTopics.setOnClickListener {
             startActivity(Intent(this, CreateTopicActivity::class.java))
         }

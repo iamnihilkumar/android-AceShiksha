@@ -24,7 +24,7 @@ class SubjectsViewModel : ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
-    private val _classLevel = MutableLiveData<String>()   // ← String not Int
+    private val _classLevel = MutableLiveData<String>()
     val classLevel: LiveData<String> = _classLevel
 
     init {

@@ -36,7 +36,7 @@ class HomeViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val uid = auth.currentUser?.uid ?: return@launch
-                // ✅ Source.SERVER forces a fresh fetch, bypassing Firestore's local cache
+                // Source.SERVER forces a fresh fetch, bypassing Firestore's local cache
                 val doc = db.collection(Constants.COLLECTION_USERS)
                     .document(uid)
                     .get(Source.SERVER)

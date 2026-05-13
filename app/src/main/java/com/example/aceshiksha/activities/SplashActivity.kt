@@ -20,10 +20,8 @@ class SplashActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             val currentUser = FirebaseAuth.getInstance().currentUser
             if (currentUser != null) {
-                // Already logged in — go to dashboard
                 startActivity(Intent(this, MainActivity::class.java))
             } else {
-                // Not logged in — go to login
                 startActivity(Intent(this, LoginActivity::class.java))
             }
             finish()

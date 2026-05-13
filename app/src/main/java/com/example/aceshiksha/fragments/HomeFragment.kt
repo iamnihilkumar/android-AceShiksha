@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
         viewModel.loadQuizAccuracy(uid)
     }
 
-    // ✅ Re-fetch user from server every time Home becomes visible
+    // Re-fetch user from server every time Home becomes visible
     // (e.g. returning from QuizResultActivity — streak/XP will now be fresh)
     override fun onResume() {
         super.onResume()

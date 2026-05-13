@@ -60,6 +60,7 @@ class GameViewModel : ViewModel() {
                 questionList = result
                 currentIndex = 0
                 correctCount = 0
+                _questionsLoaded.value = result
                 showCurrentQuestion()
             }
         }

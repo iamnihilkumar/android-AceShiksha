@@ -42,7 +42,6 @@ class PdfQuizActivity : AppCompatActivity() {
     private var selectedSubject = "General"
     private var selectedGameType = Constants.GAME_TYPE_QUIZ_BATTLE
 
-    // Holds the properly extracted, clean text from the PDF
     private var cleanedPdfText = ""
 
     private val PDF_PICK_CODE = 101
@@ -233,16 +232,12 @@ class PdfQuizActivity : AppCompatActivity() {
         for (line in lines) {
             val trimmed = line.trim()
 
-            // Skip blank lines (we'll add one separator later)
             if (trimmed.isBlank()) continue
 
-            // Skip lines with no letters (pure numbers, symbols, page markers)
             if (!trimmed.any { it.isLetter() }) continue
 
-            // Skip very short lines — likely headers, footers, or stray PDF tokens
             if (trimmed.length < 20) continue
 
-            // Skip lines that are >70% non-letter characters (binary/encoding artifacts)
             val letterRatio = trimmed.count { it.isLetter() }.toDouble() / trimmed.length
             if (letterRatio < 0.40) continue
 
@@ -420,7 +415,6 @@ $pdfText
 
                 val questionText = lines[0].trim()
 
-                // Must end with "?" and be a real sentence (≥10 chars)
                 if (!questionText.endsWith("?") || questionText.length < 10) continue
 
                 var optA = ""; var optB = ""; var optC = ""; var optD = ""

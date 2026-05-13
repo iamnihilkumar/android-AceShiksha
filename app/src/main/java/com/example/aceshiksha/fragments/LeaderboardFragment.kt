@@ -64,7 +64,7 @@ class LeaderboardFragment : Fragment() {
                         adapter = LeaderboardAdapter(data.topUsers, data.currentUserUid)
                         binding.rvLeaderboard.adapter = adapter
 
-                        // ✅ FIX: calculate rank from list position if user is in top list
+                        // calculate rank from list position if user is in top list
                         val positionInList = data.topUsers.indexOfFirst { it.uid == data.currentUserUid }
                         val isInTop = positionInList >= 0
                         val displayRank = if (isInTop) positionInList + 1 else data.currentUserRank

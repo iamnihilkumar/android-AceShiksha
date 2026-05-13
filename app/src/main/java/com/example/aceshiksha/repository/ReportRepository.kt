@@ -18,7 +18,6 @@ class ReportRepository {
 
     private val db = Firebase.firestore
 
-    // ─── Game Attempts ───────────────────────────────────────────────
 
     suspend fun saveGameAttempt(attempt: GameAttempt): Boolean {
         return try {
@@ -30,18 +29,15 @@ class ReportRepository {
         }
     }
 
-    // ─── Student Report ──────────────────────────────────────────────
 
     suspend fun getStudentReport(studentUid: String, classLevel: String): StudentReport {
         return try {
-            // 1. Fetch quiz attempts
             val quizAttempts = db.collection(COLLECTION_QUIZ_ATTEMPTS)
                 .whereEqualTo("studentUid", studentUid)
                 .get()
                 .await()
                 .documents
 
-            // 2. Fetch game attempts
             val gameAttempts = db.collection(COLLECTION_GAME_ATTEMPTS)
                 .whereEqualTo("studentUid", studentUid)
                 .get()
@@ -76,22 +72,22 @@ class ReportRepository {
             val subjectMap = mutableMapOf<String, SubjectStat>()
 
             quizAttempts.forEach { doc ->
-                val correct = (doc.getLong("correctAnswers") ?: 0).toInt()  // ← use this
+                val correct = (doc.getLong("correctAnswers") ?: 0).toInt()
                 val total = (doc.getLong("totalQuestions") ?: 0).toInt()
                 val attemptedAt = doc.getLong("attemptedAt") ?: 0L
                 val quizId = doc.getString("quizId") ?: ""
                 val subject = quizSubjectMap[quizId] ?: "General"
 
-                totalQuizScore += correct                                    // ← was `score`
+                totalQuizScore += correct
                 totalQuizQuestions += total
                 if (attemptedAt > lastQuizDate) lastQuizDate = attemptedAt
-                val pct = if (total > 0) (correct * 100) / total else 0     // ← was `score`
+                val pct = if (total > 0) (correct * 100) / total else 0
                 if (pct > bestQuizScore) bestQuizScore = pct
 
                 val existing = subjectMap[subject] ?: SubjectStat(subject = subject)
                 subjectMap[subject] = existing.copy(
                     quizzesAttempted = existing.quizzesAttempted + 1,
-                    totalScore = existing.totalScore + correct,             // ← was `score`
+                    totalScore = existing.totalScore + correct,
                     totalQuestions = existing.totalQuestions + total
                 )
             }
@@ -144,7 +140,7 @@ class ReportRepository {
         }
     }
 
-    // ─── Leaderboard ─────────────────────────────────────────────────
+    // Leaderboard
 
     suspend fun getTopUsers(limit: Int = 20): List<User> {
         return try {

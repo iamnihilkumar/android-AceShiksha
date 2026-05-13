@@ -27,8 +27,8 @@ object Constants {
     const val GAME_TYPE_CAR_RACE    = "car_race"
     const val GAME_TYPE_QUIZ_BATTLE = "quiz_battle"
 
-    const val GAME_TYPE_MEMORY_MATCH   = "memory_match"   // ✅ ADD
-    const val GAME_TYPE_TRUE_OR_FALSE  = "true_or_false"  // ✅ ADD
+    const val GAME_TYPE_MEMORY_MATCH   = "memory_match"
+    const val GAME_TYPE_TRUE_OR_FALSE  = "true_or_false"
     // XP for games
     const val XP_GAME_COMPLETE = 30
     const val XP_GAME_CORRECT  = 10

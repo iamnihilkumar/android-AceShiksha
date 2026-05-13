@@ -105,7 +105,6 @@ class TrueOrFalseActivity : AppCompatActivity() {
             binding.tvTofStreak.text = if (streak > 1) "🔥 Streak: $streak" else ""
             binding.tvTofFeedback.visibility = View.VISIBLE
 
-            // Auto-advance after 1.2 seconds
             binding.root.postDelayed({
                 viewModel.nextQuestion()
             }, 1200)
@@ -117,7 +116,6 @@ class TrueOrFalseActivity : AppCompatActivity() {
         binding.progressBarTimer.max = TIME_PER_QUESTION.toInt()
         binding.progressBarTimer.progress = TIME_PER_QUESTION.toInt()
 
-        // Animate the progress bar smoothly
         val animator = ObjectAnimator.ofInt(
             binding.progressBarTimer, "progress",
             TIME_PER_QUESTION.toInt(), 0

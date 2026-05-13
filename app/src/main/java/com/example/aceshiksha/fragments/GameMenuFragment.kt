@@ -8,16 +8,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.nikhil.aceshiksha.activities.CarRaceActivity
 import com.nikhil.aceshiksha.activities.MazeGameActivity
-import com.nikhil.aceshiksha.activities.MemoryMatchActivity   // ✅ ADD
+import com.nikhil.aceshiksha.activities.MemoryMatchActivity
 import com.nikhil.aceshiksha.activities.QuizBattleActivity
-import com.nikhil.aceshiksha.activities.TrueOrFalseActivity   // ✅ ADD
+import com.nikhil.aceshiksha.activities.TrueOrFalseActivity
 import com.nikhil.aceshiksha.databinding.FragmentGameMenuBinding
 import com.nikhil.aceshiksha.repository.AuthRepository
 import com.nikhil.aceshiksha.utils.Constants.GAME_TYPE_CAR_RACE
 import com.nikhil.aceshiksha.utils.Constants.GAME_TYPE_MAZE
-import com.nikhil.aceshiksha.utils.Constants.GAME_TYPE_MEMORY_MATCH   // ✅ ADD
+import com.nikhil.aceshiksha.utils.Constants.GAME_TYPE_MEMORY_MATCH
 import com.nikhil.aceshiksha.utils.Constants.GAME_TYPE_QUIZ_BATTLE
-import com.nikhil.aceshiksha.utils.Constants.GAME_TYPE_TRUE_OR_FALSE  // ✅ ADD
+import com.nikhil.aceshiksha.utils.Constants.GAME_TYPE_TRUE_OR_FALSE
 
 const val EXTRA_GAME_TYPE = "game_type"
 const val EXTRA_CLASS_LEVEL = "class_level"
@@ -55,10 +55,10 @@ class GameMenuFragment : Fragment() {
                 binding.cardQuizBattle.setOnClickListener {
                     launchGame(QuizBattleActivity::class.java, GAME_TYPE_QUIZ_BATTLE, classLevel)
                 }
-                binding.cardMemoryMatch.setOnClickListener {   // ✅ ADD
+                binding.cardMemoryMatch.setOnClickListener {
                     launchGame(MemoryMatchActivity::class.java, GAME_TYPE_MEMORY_MATCH, classLevel)
                 }
-                binding.cardTrueOrFalse.setOnClickListener {  // ✅ ADD
+                binding.cardTrueOrFalse.setOnClickListener {
                     launchGame(TrueOrFalseActivity::class.java, GAME_TYPE_TRUE_OR_FALSE, classLevel)
                 }
             }

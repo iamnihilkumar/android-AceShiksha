@@ -19,7 +19,6 @@ class AuthRepository {
             val user = mapDocumentToUser(userDoc.data, uid)
                 ?: return Result.failure(Exception("User not found"))
 
-            // ── Role mismatch check ──────────────────────────────────────────
 
             if (selectedRole.isNotEmpty() && user.role != selectedRole) {
                 auth.signOut()
@@ -30,7 +29,6 @@ class AuthRepository {
                 return Result.failure(Exception(msg))
             }
 
-            // In login(), after role mismatch check, ADD THIS:
             if (result.user?.isEmailVerified == false) {
                 auth.signOut()
                 return Result.failure(Exception("EMAIL_NOT_VERIFIED"))

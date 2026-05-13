@@ -30,7 +30,6 @@ class SubjectsAdapter(
             tvSubjectDesc.text = subject.description
             tvSubjectInitial.text = subject.name.first().toString()
 
-            // Set background color dynamically
             val color = try { Color.parseColor(subject.color) }
             catch (e: Exception) { Color.parseColor("#4CAF50") }
 

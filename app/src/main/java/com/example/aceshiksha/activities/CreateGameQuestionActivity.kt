@@ -54,7 +54,6 @@ class CreateGameQuestionActivity : AppCompatActivity() {
     }
 
     private fun setupSpinners() {
-        // ✅ Updated: 5 game types
         val gameTypes = listOf("Maze", "Car Race", "Quiz Battle", "Memory Match", "True or False")
         binding.spinnerGameType.adapter = ArrayAdapter(
             this, android.R.layout.simple_spinner_dropdown_item, gameTypes

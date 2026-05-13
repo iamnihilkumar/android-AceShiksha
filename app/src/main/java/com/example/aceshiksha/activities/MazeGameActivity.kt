@@ -34,7 +34,6 @@ class MazeGameActivity : AppCompatActivity() {
     private var classLevel = "6"
     private var activeSheet: BottomSheetDialog? = null
 
-    // ✅ NEW: current user UID
     private val studentUid = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +50,6 @@ class MazeGameActivity : AppCompatActivity() {
         setupDirectionButtons()
         observeGame()
 
-        // ✅ UPDATED: pass studentUid
         viewModel.loadQuestionsForMaze(
             classLevel,
             Constants.GAME_TYPE_MAZE,

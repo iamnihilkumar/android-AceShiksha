@@ -19,7 +19,7 @@ class CarRaceActivity : AppCompatActivity() {
     private val viewModel: GameViewModel by viewModels()
     private var correctCount = 0
 
-    // ✅ NEW: student UID
+    // student UID
     private val studentUid = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +36,7 @@ class CarRaceActivity : AppCompatActivity() {
         observeGame()
         setupAnswerButtons()
 
-        // ✅ UPDATED: pass studentUid
+
         viewModel.loadQuestions(
             classLevel,
             GAME_TYPE_CAR_RACE,
